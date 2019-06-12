@@ -33,3 +33,7 @@
 
 # me before you
 *.vscode
+*.DS_Store
+*
+!*/
+!*.cpp
