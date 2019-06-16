@@ -12,6 +12,7 @@ int main(int argc, char const *argv[])
     std::cout << "Enter two numbers: " << std::endl;
     int x = 0, y = 0;
 
+    // std::cin >> xxxx 返回一个std::cin对象, 所以可以接连使用 >> 运算符
     std::cin >> x >> y;
 
     std::cout << "The sum of " << x << " and " << y << " is " << x + y << std::endl;
