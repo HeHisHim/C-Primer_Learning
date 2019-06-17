@@ -23,7 +23,9 @@ void ex1_5(int x, int y)
 
 int main(int argc, char const *argv[])
 {
-    std::cout << "Hello World" << std::endl;
+    // ex1_3();
+    // ex1_4(3, 4);
+    ex1_5(3, 5);
 
     return 0;
 }
