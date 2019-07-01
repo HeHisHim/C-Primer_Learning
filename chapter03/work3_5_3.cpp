@@ -28,27 +28,22 @@ void ex3_35(void)
     cout << endl;
 }
 
-bool ex3_36(int* a, int* b)
+bool ex3_36(int* a, int* b, int size1, int size2)
 {
-    // 获取首尾指针
-    int *abegin = begin(a), *aend = end(a);
-    int *bbegin = begin(b), *bend = end(b);
-
-    // 长度不等直接返回
-    if((aend - abegin) != (bend - bbegin))
+    if(size1 != size2)
     {
         return false;
     }
-    
-    // 每一个元素都判断是否相等
-    while((abegin != aend) && (bbegin != bend))
+
+    int asize = 0, bsize = 0;
+    while((asize != size1) && (bsize != size2))
     {
-        if(*abegin != *bbegin)
+        if(a[asize] != b[bsize])
         {
             return false;
         }
-        abegin++;
-        bbegin++;
+        asize++;
+        bsize++;
     }
 
     return true;
@@ -58,7 +53,7 @@ int main(int argc, char const *argv[])
 {
     // ex3_35();
     int num1[5] = {1, 2, 3, 4, 5};
-    int num2[4] = {2, 3, 4, 5};
-    cout << ex3_36(num1, num2) << endl;
+    int num2[5] = {1, 2, 3, 4, 5};
+    cout << ex3_36(num1, num2, 5, 5) << endl;
     return 0;
 }
