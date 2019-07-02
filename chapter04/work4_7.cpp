@@ -22,8 +22,18 @@ void ex4_21(void)
     cout << endl;
 }
 
+void ex4_23(void)
+{
+    string s = "word";
+    // string p1 = s + s[s.size() - 1] == 's' ? "" : "s";
+    string p1 = s + (s[s.size() - 1] == 's' ? "" : "s");
+
+    cout << p1 << endl;
+}
+
 int main(int argc, char const *argv[])
 {
     // ex4_21();
+    ex4_23();
     return 0;
 }
