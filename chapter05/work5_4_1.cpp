@@ -41,7 +41,14 @@ void ex5_14(void)
         recordCount = count;
     }
 
-    cout << resStr << " " << recordCount << endl;
+    if(1 == recordCount)
+    {
+        cout << "No word has appeared in succession." << endl;
+    }
+    else
+    {
+        cout << resStr << " " << recordCount << endl;
+    }
 }
 
 int main(int argc, char const *agrv[])
