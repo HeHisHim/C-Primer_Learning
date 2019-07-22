@@ -8,6 +8,9 @@ struct Person
 {
     string name;
     string address;
+    Person() = default;
+    Person(string name, string address): name(name), address(address){} // ex7_15
+    Person(istream&);
     string get_name() const
     {
         return name;
@@ -29,4 +32,10 @@ ostream& print(ostream& os, const Person& person)
     os << "name: " << person.name << endl;
     os << "address: " << person.address;
     return os;
+}
+
+// ex7_15
+Person::Person(istream& is)
+{
+    read(is, *this);
 }
