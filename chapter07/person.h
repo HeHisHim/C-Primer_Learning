@@ -34,6 +34,8 @@ using namespace std;
 // ex7_19
 class Person
 {
+    friend istream& read(istream&, Person& person);
+    friend ostream& print(ostream&, const Person& person);
     private:
         string name;
         string address;
@@ -46,12 +48,26 @@ class Person
         {
             return address;
         }
-    Person() = default;
-    Person(string name, string address): name(name), address(address){}
-    Person(istream&);
+        Person() = default;
+        Person(string name, string address): name(name), address(address){}
+        Person(istream&);
 };
 
-// Person::Person(istream& is)
-// {
-//     read(is, *this);
-// }
+//ex7_22
+istream& read(istream& is, Person& person)
+{
+    is >> person.name >> person.address;
+    return is;
+}
+
+ostream& print(ostream& os, const Person& person)
+{
+    os << "name: " << person.name << endl;
+    os << "address: " << person.address;
+    return os;
+}
+
+Person::Person(istream& is)
+{
+    read(is, *this);
+}
