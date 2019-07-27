@@ -10,7 +10,7 @@ class Screen
     public:
         Screen() = default;
         Screen(int width, int height): width(width), height(height){}
-        Screen(int width, int height, string content): width(width), height(height), content(content){}
+        Screen(int width, int height, string content): width(width), height(height), content(width * height, content){}
         void screen_print(void)
         {
             cout << width << " " << height << " " << content;
