@@ -11,8 +11,9 @@ class Window_mgr
     public:
         using ScreenIndex = vector<Screen>::size_type;
         void clear(ScreenIndex);
+        ScreenIndex add(Screen*);
     private:
-        vector<Screen> screens;
+        vector<Screen*>screens;
 };
 
 class Screen
@@ -47,8 +48,14 @@ class Screen
 
 void Window_mgr::clear(Window_mgr::ScreenIndex i)
 {
-    Screen& s = screens[i];
-    s.content = string(s.width * s.height, ' ');
+    Screen* s = screens[i];
+    s->content = string(s->width * s->height, ' ');
+}
+
+Window_mgr::ScreenIndex Window_mgr::add(Screen* scr)
+{
+    screens.push_back(scr);
+    return screens.size() - 1;
 }
 
 int main(int argc, char const *argv[])
@@ -59,5 +66,10 @@ int main(int argc, char const *argv[])
     myScreen.display(cout);
     cout << endl;
 
+    Window_mgr wm;
+    Window_mgr::ScreenIndex index = wm.add(&myScreen);
+    wm.clear(index);
+    myScreen.display(cout);
+    cout << endl;
     return 0;
 }
