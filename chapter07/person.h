@@ -67,6 +67,7 @@ ostream& print(ostream& os, const Person& person)
     return os;
 }
 
+// ex7_15
 Person::Person(istream& is)
 {
     read(is, *this);
