@@ -3,16 +3,10 @@
 #include <vector>
 #include <list>
 #include <deque>
+#include "myfun.h"
 
 using namespace std;
 
-void print_container(deque<int>& numbers)
-{
-    for(auto x : numbers)
-    {
-        cout << x << endl;
-    }
-}
 
 void ex9_18(void) // ex9_19
 {
@@ -49,8 +43,8 @@ void ex9_20(void)
         }
     }
 
-    print_contain(odd);
-    print_contain(even);
+    print_deque(odd);
+    print_deque(even);
 }
 
 int main(int argc, char const* argv[])
