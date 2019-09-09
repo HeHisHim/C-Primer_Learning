@@ -66,7 +66,7 @@ void ex10_13(void)
 
 int main(int argc, char const* agrv[])
 {
-    // ex10_11();
-    ex10_13();
+    ex10_11();
+    // ex10_13();
     return 0;
 }
