@@ -40,3 +40,8 @@ void print_forward_list(std::forward_list<std::string>& numbers)
     }
     std::cout << std::endl;
 }
+
+bool isShorter(const std::string& first, const std::string& second)
+{
+    return first.size() < second.size();
+}
