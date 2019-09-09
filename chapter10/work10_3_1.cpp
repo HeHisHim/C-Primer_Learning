@@ -9,11 +9,6 @@
 
 using namespace std;
 
-bool isShorter(const string& first, const string& second)
-{
-    return first.size() < second.size();
-}
-
 vector<string> elimDups(string target)
 {
     vector<string> contains;
