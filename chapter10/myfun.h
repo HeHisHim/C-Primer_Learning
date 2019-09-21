@@ -32,7 +32,7 @@ void print_deque(std::deque<int>& numbers)
     std::cout << std::endl;
 }
 
-void print_list(std::list<int>& numbers)
+void print_list(std::list<std::string>& numbers)
 {
     for(auto x : numbers)
     {
