@@ -2,9 +2,11 @@
 #include <vector>
 #include <stdexcept>
 #include <string>
+#include <new>
 
 class StrBlob
 {
+    friend class StrBlobPtr; 
     public:
         typedef std::vector<std::string>::size_type size_type;
         StrBlob();
@@ -58,3 +60,16 @@ std::string& StrBlob::back()
 StrBlob::StrBlob(): data(std::make_shared<std::vector<std::string>>()){}
 StrBlob::StrBlob(std::initializer_list<std::string> il): data(std::make_shared<std::vector<std::string>>(il)){}
 
+
+class StrBlobPtr
+{
+    public:
+        StrBlobPtr(): curr(0){}
+        StrBlobPtr(StrBlob& a, std::size_t sz = 0): wptr(a.data), curr(sz){}
+        std::string& deref() const;
+        StrBlobPtr& incr();
+    private:
+        std::shared_ptr<std::vector<std::string>> check(std::size_t, const std::string&) const;
+        std::weak_ptr<std::vector<std::string>> wptr;
+        std::size_t curr;
+};
