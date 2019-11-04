@@ -4,9 +4,12 @@
 #include <string>
 #include <new>
 
+class StrBlobPtr;
+
 class StrBlob
 {
-    friend class StrBlobPtr; 
+    friend class StrBlobPtr;
+
     public:
         typedef std::vector<std::string>::size_type size_type;
         StrBlob();
@@ -26,6 +29,8 @@ class StrBlob
         void pop_back();
         std::string& front();
         std::string& back();
+        StrBlobPtr begin();
+        StrBlobPtr end();
     private:
         std::shared_ptr<std::vector<std::string>> data;
         void check(size_type i, const std::string& msg) const;
@@ -82,9 +87,35 @@ StrBlobPtr::check(std::size_t i, const std::string& msg) const
     {
         throw std::runtime_error("unbound StrBlobPtr");
     }
-    if(i > ret->size())
+    if(i >= ret->size())
     {
         throw std::out_of_range(msg);
     }
+    return ret;
+}
+
+std::string& 
+StrBlobPtr::deref() const
+{
+    auto p = check(curr, "dereference past end");
+    return (*p)[curr];
+}
+
+StrBlobPtr& 
+StrBlobPtr::incr()
+{
+    check(curr, "increment past end of StrBlobPtr");
+    ++curr;
+    return *this;
+}
+
+StrBlobPtr StrBlob::begin()
+{
+    return StrBlobPtr(*this);
+}
+
+StrBlobPtr StrBlob::end()
+{
+    auto ret = StrBlobPtr(*this, data->size());
     return ret;
 }
