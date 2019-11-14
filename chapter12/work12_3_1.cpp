@@ -24,6 +24,11 @@ void ex12_27(void)
     }
 }
 
+// ex12_31
+/*
+    set会过滤重复的元素, vector不会, 使用set更好
+ */
+
 int main(int argc, char const* argv[])
 {
     ex12_27();
