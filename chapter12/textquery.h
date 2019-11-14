@@ -7,6 +7,7 @@
 #include <fstream>
 #include <map>
 #include <set>
+#include <sstream>
 
 using namespace std;
 
@@ -26,25 +27,29 @@ TextQuery::TextQuery(ifstream& infile)
     while(getline(infile, text))
     {
         texts.push_back(text);
-        string::size_type position = 0;
-        string::size_type idx = text.find(" ", position);
-        while(text.npos != idx)
+        istringstream line(text);
+        string curr_word;
+        while(line >> curr_word)
         {
-            string curr_word = string(text.begin() + position, text.begin() + idx);
             word_line[curr_word].insert(texts.size() - 1);
-            position = idx + 1;
-            idx = text.find(" ", position);
         }
     }
 }
 
 void TextQuery::print_query(string word)
 {
-    auto set_line = word_line[word];
+    auto set_line = word_line.find(word);
     set<int>::iterator it;
-    cout << word << " has " << set_line.size() << " items" << endl;
-    for(it = set_line.begin(); it != set_line.end(); it++)
+    if(set_line != word_line.end())
     {
-        cout << "line<" << *it + 1 << "> " << texts[*it] << endl;
+        cout << word << " has " << set_line->second.size() << " items" << endl;
+        for(it = set_line->second.begin(); it != set_line->second.end(); it++)
+        {
+            cout << "line<" << *it + 1 << "> " << texts[*it] << endl;
+        }
+    }
+    else
+    {
+        cout << word << " has" << " 0 items" << endl;
     }
 }
